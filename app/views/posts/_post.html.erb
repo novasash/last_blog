@@ -1,7 +1,10 @@
 <div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
+  <% if post.poster.attached? %>
+    <%= image_tag post.poster.variant(resize_to_fill: [1600, 300]), class="img-fluid" %>
+  <% end %>
 
+  <h1>
+    <%= post.title %>
+  </h1>
+  <%= post.content %>
 </div>
