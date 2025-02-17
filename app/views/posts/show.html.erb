@@ -1,3 +1,4 @@
+<%= turbo_stream_from @post%>
 <p style="color: green"><%= notice %></p>
 
 <%= render @post %>
@@ -8,7 +9,7 @@
   <%= render partial: "comments/comment", collection: @post.comments, locals: { post: @post } %>
 </div>
 
-<div>
+<div data-turbo-permanent>
   <%= render partial: "comments/new", locals: { post: @post, comment: @post.comments.new } %>
 </div>
 
