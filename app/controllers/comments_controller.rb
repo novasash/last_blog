@@ -3,13 +3,24 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.new(comment_params)
-    @comment.session = session
-    @commnet.save
-    redirect_to @post
+    @comment.session = session[:session_id]
+    @comment.save
+    render turbo_stream: [
+      turbo_stream.replace(
+        "new_comment",
+        partial: "comments/new",
+        locals: { post: @post, comment: Comment.new }
+      ),
+      turbo_stream.append(
+        "comments",
+        partial: "comments/comment",
+        locals: { post: @post, comment: @comment }
+      )
+    ]
   end
 
   def destroy
-    @commnet = @post.comments.find(params[:id])
+    @comment = @post.comments.find(params[:id])
     @comment.destroy
     redirect_to @post
   end
@@ -18,5 +29,9 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 end
