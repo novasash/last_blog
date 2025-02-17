@@ -1,4 +1,6 @@
-<%= form_with model: [post, comment], id: :new_comment do |f| %>
-  <%= f.rich_text_area :content %>
-  <%= f.submit class: "btn" %>
-<% end %>
+<div class="mt-16 max-w-auto gap-x-4 text-center">
+  <%= form_with model: [post, comment], id: :new_comment do |f| %>
+    <%= f.text_field :content, placeholder: "What do you think?", class: "w-100 rounded-md bg-white/5 px-3.5 py-2 text-base text-gray-950 outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6 border border-gray-300" %>
+    <%= f.submit class: "rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+  <% end %>
+</div>

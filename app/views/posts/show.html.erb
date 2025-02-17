@@ -1,23 +1,53 @@
 <%= turbo_stream_from @post%>
 <p style="color: green"><%= notice %></p>
 
-<%= render @post %>
-
-<h2>Comments</h2>
-
-<div id="comments">
-  <%= render partial: "comments/comment", collection: @post.comments, locals: { post: @post } %>
+<%#= link_to "Edit", edit_post_path(@post) if user_signed_in? %>
+<div class="absolute inset-0 -z-10 overflow-hidden">
+  <svg class="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
+    <defs>
+      <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+        <path d="M100 200V.5M.5 .5H200" fill="none" />
+      </pattern>
+    </defs>
+    <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+      <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0" />
+    </svg>
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
+  </svg>
 </div>
 
-<div data-turbo-permanent>
-  <%= render partial: "comments/new", locals: { post: @post, comment: @post.comments.new } %>
+<h1 class="text-center text-base/7 font-semibold text-indigo-600">
+  <%= link_to "The Last Blog", root_path %>
+</h1>
+
+<h2 class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-5xl">
+  <%= @post.title %>
+</h2>
+
+<div class="mx-auto max-w-xl text-center mt-6 mb-10 text-xl/8 text-gray-700">
+  <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Pulvinar aptent feugiat fermentum volutpat auctor at velit. Id senectus volutpat nibh et commodo senectus vel justo. Natoque ut erat velit tortor sagittis.</p>
 </div>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
+<div class="mx-auto max-w-xl text-base/7 text-gray-700 lg:max-w-2xl">
+  <p><%= @post.content %></p>
+</div>
+
+<div class="mx-auto max-w-xl text-base/7 text-gray-700 lg:max-w-2xl">
+  <h2 class="mt-10 pt-12 pb-6 text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-3xl border-t border-gray-100">Responses</h2>
+  <div id="comments" class="my-8">
+    <%= render partial: "comments/comment", collection: @post.comments, locals: { post: @post } %>
+  </div>
+
+  <div data-turbo-permanent>
+    <%= render partial: "comments/new", locals: { post: @post, comment: @post.comments.new } %>
+  </div>
+</div>
+
+<div class="my-20 mx-auto max-w-xl text-base/7 lg:max-w-2xl text-center font-bold text-indigo-700">
+  <%#= link_to "Edit this post", edit_post_path(@post) %>
   <%= link_to "Back to posts", posts_path %>
 
-  <%= link_to "Destroy this post", post_path(@post), 
+  <%#= link_to "Destroy this post", post_path(@post), 
       "data-turbo-method": :delete,
       "data-turbo-confirm": "Are you sure?" %>
 </div>
