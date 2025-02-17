@@ -1,6 +1,6 @@
 <div id="<%= dom_id post %>">
   <% if post.poster.attached? %>
-    <%= image_tag post.poster.variant(resize_to_fill: [1600, 300]), class="img-fluid" %>
+    <%= image_tag post.poster.variant(resize_to_fill: [1600, 300]), class: "img-fluid" %>
   <% end %>
 
   <h1>
