@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'faker'
+
+12.times do
+  Post.create(
+    title: Faker::Hipster.sentence,
+    content: Faker::Hipster.paragraph_by_chars(characters: 2560, supplemental: false)
+  )
+end
